@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWOT Analýza - Upgrade E-learningového KD100</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 0;
+            min-height: 700px;
+        }
+        
+        .swot-quadrant {
+            padding: 40px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .swot-quadrant:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .strengths {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-right: 3px solid white;
+            border-bottom: 3px solid white;
+        }
+        
+        .weaknesses {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            border-bottom: 3px solid white;
+        }
+        
+        .opportunities {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-right: 3px solid white;
+        }
+        
+        .threats {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .quadrant-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(255,255,255,0.5);
+        }
+        
+        .icon {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+        
+        .quadrant-title {
+            color: white;
+        }
+        
+        .quadrant-title h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .quadrant-title p {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .item-list {
+            list-style: none;
+        }
+        
+        .item-list li {
+            background: rgba(255,255,255,0.95);
+            margin-bottom: 12px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1em;
+            line-height: 1.6;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .item-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .item-list li::before {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .strengths .item-list li::before {
+            content: "✓";
+            color: #11998e;
+        }
+        
+        .weaknesses .item-list li::before {
+            content: "✗";
+            color: #eb3349;
+        }
+        
+        .opportunities .item-list li::before {
+            content: "⊕";
+            color: #4facfe;
+        }
+        
+        .threats .item-list li::before {
+            content: "⊗";
+            color: #f5576c;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .swot-quadrant:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .swot-quadrant {
+                padding: 25px;
+                border: none !important;
+                border-bottom: 3px solid white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SWOT ANALÝZA</h1>
+            <p>Upgrade e-learningového modulu kariérového kurzu KD100</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);"></div>
+                <span><strong>Interní - Pozitivní</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);"></div>
+                <span><strong>Interní - Negativní</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <span><strong>Externí - Pozitivní</strong></span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <span><strong>Externí - Negativní</strong></span>
+            </div>
+        </div>
+        
+        <div class="swot-grid">
+            <div class="swot-quadrant strengths">
+                <div class="quadrant-header">
+                    <div class="icon">💪</div>
+                    <div class="quadrant-title">
+                        <h2>SILNÉ STRÁNKY</h2>
+                        <p>Strengths - Interní faktory</p>
+                    </div>
+                </div>
+                <ul class="item-list">
+                    <li>20 kvalifikovaných odborníků v týmu INOVACE</li>
+                    <li>Detailní znalost prostředí a současného systému</li>
+                    <li>Přímý přístup k datům a historii kurzů</li>
+                    <li>Silná podpora vedení VA (projekt #INOVACE)</li>
+                    <li>Existence platformy EduWeb jako funkčního základu</li>
+                    <li>Zkušenosti s podobnými projekty v minulosti</li>
+                </ul>
+            </div>
+            
+            <div class="swot-quadrant weaknesses">
+                <div class="quadrant-header">
+                    <div class="icon">⚠️</div>
+                    <div class="quadrant-title">
+                        <h2>SLABÉ STRÁNKY</h2>
+                        <p>Weaknesses - Interní faktory</p>
+                    </div>
+                </div>
+                <ul class="item-list">
+                    <li>Malý počet pracovníků (pouze 20 osob na celý projekt)</li>
+                    <li>Omezený rozpočet a finanční zdroje</li>
+                    <li>Omezení ze strany OBI (limitace outsourcingu)</li>
+                    <li>Vysoký časový tlak (deadline 31.12.2026)</li>
+                    <li>Různé úrovně technických znalostí v týmu</li>
+                    <li>Maximální dostávka systému pouze 4 hodiny</li>
+                </ul>
+            </div>
+            
+            <div class="swot-quadrant opportunities">
+                <div class="quadrant-header">
+                    <div class="icon">🚀</div>
+                    <div class="quadrant-title">
+                        <h2>PŘÍLEŽITOSTI</h2>
+                        <p>Opportunities - Externí faktory</p>
+                    </div>
+                </div>
+                <ul class="item-list">
+                    <li>Spolupráce s univerzitami (UO, civilní vysoké školy)</li>
+                    <li>Využití moderních aplikací třetích stran</li>
+                    <li>Dotazníkové šetření pro optimalizaci řešení</li>
+                    <li>Beta testování s reálnými uživateli pro zpětnou vazbu</li>
+                    <li>Moderní e-learning trendy (AI, adaptivní učení)</li>
+                    <li>Možnost sdílení řešení s ostatními kurzy VA</li>
+                </ul>
+            </div>
+            
+            <div class="swot-quadrant threats">
+                <div class="quadrant-header">
+                    <div class="icon">⛔</div>
+                    <div class="quadrant-title">
+                        <h2>HROZBY</h2>
+                        <p>Threats - Externí faktory</p>
+                    </div>
+                </div>
+                <ul class="item-list">
+                    <li>Neochota ke spolupráci a komunikaci napříč systémem</li>
+                    <li>Nedostatek kvalitních vstupů z dotazníkových šetření</li>
+                    <li>Problémy s propojením různých systémů kvůli OBI</li>
+                    <li>Riziko over-engineeringu (příliš složité řešení)</li>
+                    <li>Nedostatek odborných lidských zdrojů na trhu</li>
+                    <li>Technická nestabilita při integraci s existujícími systémy</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Projekt:</strong> Modernizace e-learningového modulu KD100 metodou blended learning</p>
+            <p><strong>Nositel:</strong> VeV-VA | <strong>Gestor:</strong> OŘLZ SST MO | <strong>Termín:</strong> NLT 31.12.2026</p>
+        </div>
+    </div>
+</body>
+</html>
