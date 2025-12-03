@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDMP - Srovnání variant COA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1e3c72;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .coa-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .coa-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .coa-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .coa-card h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2a5298;
+        }
+
+        .coa-section {
+            margin: 20px 0;
+        }
+
+        .coa-section h3 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .coa-section h3::before {
+            content: "▸";
+            margin-right: 10px;
+            color: #5a7fb8;
+        }
+
+        .coa-section ul {
+            list-style: none;
+            padding-left: 25px;
+        }
+
+        .coa-section li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+        }
+
+        .coa-section li::before {
+            content: "•";
+            position: absolute;
+            left: -15px;
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .comparison-table h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .star-rating {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+
+        .risk-high {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .risk-low {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .badge-saas {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-inhouse {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        @media (max-width: 768px) {
+            .coa-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 MDMP - Course of Action (COA) Development</h1>
+            <p class="subtitle">Upgrade současného e-learningového kurzu KD100</p>
+            <div style="margin-top: 15px;">
+                <span class="badge badge-saas">COA 1: SaaS</span>
+                <span class="badge badge-inhouse">COA 2: In-house</span>
+            </div>
+        </header>
+
+        <div class="coa-cards">
+            <div class="coa-card">
+                <h2>COA 1 - SaaS (Software as a Service)</h2>
+                
+                <div class="coa-section">
+                    <h3>Způsob vedení činnosti</h3>
+                    <ul>
+                        <li>Identifikace firem s hotovým řešením</li>
+                        <li>Vytvoření veřejné zakázky s předstihem</li>
+                        <li>Rychlá implementace hotové platformy</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Rozmístění sil</h3>
+                    <ul>
+                        <li><strong>Štáb:</strong> Formulace zakázky</li>
+                        <li><strong>Lektoři:</strong> Koordinace, tvorba GUI, kontrola dat</li>
+                        <li><strong>Vývojáři:</strong> Implementace SaaS, správa servisu</li>
+                        <li><strong>Testeři:</strong> Funkční a zátěžové testy</li>
+                        <li><strong>Zabezpečení:</strong> Spolupráce s NBU, OBI</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Rozdělení zdrojů</h3>
+                    <ul>
+                        <li>Minimální nároky na vlastní servery (cloud)</li>
+                        <li>Finanční prostředky na licence a služby</li>
+                        <li>Nižší personální náročnost</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Kritéria hodnocení</h3>
+                    <ul>
+                        <li>✅ Rychlé nasazení</li>
+                        <li>✅ Nízká interní zátěž</li>
+                        <li>⚠️ Závislost na dodavateli</li>
+                        <li>⚠️ Omezená customizace</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="coa-card">
+                <h2>COA 2 - In-house (Vlastní upgrade)</h2>
+                
+                <div class="coa-section">
+                    <h3>Způsob vedení činnosti</h3>
+                    <ul>
+                        <li>Interní modernizace v rámci resortu</li>
+                        <li>Vlastní vývojový plán (analýza → vývoj → implementace)</li>
+                        <li>Postupná modernizace bez veřejné soutěže</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Rozmístění sil</h3>
+                    <ul>
+                        <li><strong>Štáb:</strong> Řízení projektu, prioritizace, milníky</li>
+                        <li><strong>Lektoři:</strong> Definice obsahu, didaktika, zpětná vazba</li>
+                        <li><strong>Vývojáři:</strong> Kompletní návrh a implementace systému</li>
+                        <li><strong>Testeři:</strong> Funkční, regresní, zátěžové testy</li>
+                        <li><strong>Zabezpečení:</strong> Analýza rizik, certifikace, NBU</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Rozdělení zdrojů</h3>
+                    <ul>
+                        <li>Vysoké nároky na IT infrastrukturu</li>
+                        <li>Investice do vývojových nástrojů a licencí</li>
+                        <li>Vysoká personální náročnost</li>
+                        <li>Kontinuální finanční zdroje na provoz</li>
+                    </ul>
+                </div>
+
+                <div class="coa-section">
+                    <h3>Kritéria hodnocení</h3>
+                    <ul>
+                        <li>✅ Plná kontrola a customizace</li>
+                        <li>✅ Vysoká bezpečnost (OBI)</li>
+                        <li>⚠️ Dlouhá doba vývoje</li>
+                        <li>⚠️ Vyšší počáteční investice</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h2>📊 Detailní srovnání variant</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kritérium</th>
+                        <th>COA 1 - SaaS</th>
+                        <th>COA 2 - In-house</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Suitable (Vhodnost)</strong></td>
+                        <td><span class="star-rating">⭐⭐⭐</span><br>Rychlé, omezené přizpůsobení</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>100% dle požadavků</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Feasible (Proveditelnost)</strong></td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Nízké nároky, rychlá implementace</td>
+                        <td><span class="star-rating">⭐⭐</span><br>Vysoké nároky, dlouhý vývoj</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acceptable (Přijatelnost)</strong></td>
+                        <td><span class="star-rating">⭐⭐⭐</span><br>Závislost na smlouvě</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Plná kontrola</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security (Bezpečnost)</strong></td>
+                        <td><span class="star-rating">⭐⭐</span><br>Riziko přenosu dat mimo armádu</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>100% kontrola, OBI optimální</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time to Deploy</strong></td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Nejrychlejší nasazení</td>
+                        <td><span class="star-rating">⭐</span><br>Dlouhá doba vývoje</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost (Počáteční)</strong></td>
+                        <td><span class="star-rating">⭐⭐</span><br>Nižší vstupní náklady</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Vysoká počáteční investice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost (Dlouhodobé)</strong></td>
+                        <td><span class="star-rating">⭐⭐⭐</span><br>Průběžné licenční poplatky</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Levnější provoz dlouhodobě</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flexibility (Flexibilita)</strong></td>
+                        <td><span class="star-rating">⭐⭐</span><br>Omezená customizace</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Maximální přizpůsobení</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vendor-lock</strong></td>
+                        <td><span class="risk-high">Vysoký</span><br>Závislost na dodavateli</td>
+                        <td><span class="risk-low">Nízký</span><br>Plná nezávislost</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OBI / NBU Kompatibilita</strong></td>
+                        <td><span class="star-rating">⭐⭐</span><br>Může být problematická</td>
+                        <td><span class="star-rating">⭐⭐⭐⭐</span><br>Optimální pro armádní prostředí</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
